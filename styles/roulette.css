@@ -1,0 +1,363 @@
+
+/* ==========================================
+   POKÉROLE SHINY ROULETTE
+   Foundry VTT v13
+   ========================================== */
+
+.pokerole-shiny-dialog {
+  --psr-gold: #ffd76a;
+  --psr-purple: #a86cff;
+  --psr-pink: #ff6fae;
+  --psr-bg: #101020;
+  --psr-text: #fff8e9;
+}
+
+.pokerole-shiny-dialog .window-content {
+  padding: 0;
+  overflow: hidden;
+  background: #101020;
+}
+
+.pokerole-shiny-dialog .dialog-buttons {
+  display: none;
+}
+
+.psr-app {
+  position: relative;
+  overflow: hidden;
+  min-height: 610px;
+  padding: 28px 24px 30px;
+  text-align: center;
+  color: var(--psr-text);
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(135, 73, 218, 0.28),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 50% 90%,
+      rgba(255, 189, 65, 0.12),
+      transparent 45%
+    ),
+    linear-gradient(
+      145deg,
+      #211535 0%,
+      #101020 55%,
+      #080b18 100%
+    );
+}
+
+.psr-app::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.85) 1px,
+      transparent 2px
+    );
+  background-size: 57px 63px;
+}
+
+.psr-app > * {
+  position: relative;
+  z-index: 1;
+}
+
+.psr-stars {
+  font-size: 25px;
+  letter-spacing: 15px;
+  color: var(--psr-gold);
+  text-shadow: 0 0 16px rgba(255, 215, 106, 0.8);
+  animation: psr-twinkle 2.5s ease-in-out infinite;
+}
+
+.psr-kicker {
+  margin-top: 10px;
+  color: #d9baff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 6px;
+}
+
+.psr-heading {
+  margin: 7px 0;
+  color: #fff3cb;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow:
+    0 2px 0 #6a368e,
+    0 0 25px rgba(255, 210, 100, 0.35);
+}
+
+.psr-pokemon {
+  margin: 8px auto 15px;
+  color: #ffe09a;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.psr-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 340px;
+  height: 340px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.psr-pointer {
+  position: absolute;
+  z-index: 5;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff5cb;
+  font-size: 36px;
+  filter: drop-shadow(0 0 8px #ffc44a);
+}
+
+.psr-wheel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 305px;
+  height: 305px;
+  border: 11px solid #ffd76a;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 5px #6c3c8d,
+    0 0 0 9px #d9a64b,
+    0 0 25px rgba(255, 211, 100, 0.5),
+    inset 0 0 25px rgba(0, 0, 0, 0.4);
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      #6b37ac 0deg 22.5deg,
+      #f3ad44 22.5deg 45deg,
+      #b35ec8 45deg 67.5deg,
+      #352875 67.5deg 90deg
+    );
+}
+
+.psr-wheel::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 2px dashed rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+}
+
+.psr-wheel::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      #fff7c5 0 5px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 100% 50%,
+      #fff7c5 0 5px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      #fff7c5 0 5px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 0% 50%,
+      #fff7c5 0 5px,
+      transparent 6px
+    );
+}
+
+.psr-wheel-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 125px;
+  height: 125px;
+  border: 6px solid #ffe49c;
+  border-radius: 50%;
+  color: #fff7dc;
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      #7c50bf,
+      #241545 70%
+    );
+  box-shadow:
+    0 0 0 5px #442269,
+    0 0 22px rgba(255, 226, 135, 0.6);
+}
+
+.psr-wheel-symbol {
+  font-size: 49px;
+  line-height: 1;
+  color: #ffe388;
+  text-shadow: 0 0 15px #ffd76a;
+}
+
+.psr-wheel-label {
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.psr-spinning {
+  animation: psr-spin 6s cubic-bezier(
+    0.12, 0.7, 0.16, 1
+  ) forwards;
+}
+
+.psr-success {
+  border-color: #fff5ae;
+  box-shadow:
+    0 0 0 5px #e7a5ff,
+    0 0 0 9px #ffd76a,
+    0 0 45px #ffe57d,
+    0 0 85px rgba(255, 240, 145, 0.7);
+  animation: psr-shiny-pulse 1s ease-in-out infinite alternate;
+}
+
+.psr-odds,
+.psr-player {
+  margin: 12px auto;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #cbb8e9;
+}
+
+.psr-odds strong,
+.psr-player strong {
+  display: block;
+  margin-top: 5px;
+  color: #fff3cb;
+  font-size: 23px;
+  letter-spacing: 0;
+}
+
+.psr-player strong {
+  color: #f2c1ff;
+  font-size: 17px;
+}
+
+.psr-spin-button {
+  display: block;
+  width: 90%;
+  margin: 20px auto 10px;
+  padding: 15px 20px;
+  border: 2px solid #ffe6a0;
+  border-radius: 12px;
+  color: #281139;
+  background:
+    linear-gradient(
+      135deg,
+      #fff1a5,
+      #ffb64f 55%,
+      #f58e8e
+    );
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow:
+    0 6px 0 #8d4b55,
+    0 0 25px rgba(255, 194, 85, 0.35);
+  transition:
+    transform 0.2s,
+    filter 0.2s;
+}
+
+.psr-spin-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  filter: brightness(1.15);
+}
+
+.psr-spin-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.psr-result {
+  min-height: 35px;
+  margin-top: 20px;
+  color: #dfc6ff;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.psr-result-shiny {
+  color: #fff2a3;
+  font-size: 25px;
+  text-shadow:
+    0 0 12px #ffc34d,
+    0 0 28px #ff8dd8;
+  animation: psr-twinkle 0.8s infinite alternate;
+}
+
+.psr-result-normal {
+  color: #e5d6f7;
+}
+
+.psr-setup {
+  padding: 10px;
+}
+
+.psr-setup select {
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* ANIMAZIONI */
+
+@keyframes psr-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  70% {
+    transform: rotate(1700deg);
+  }
+  100% {
+    transform: rotate(2160deg);
+  }
+}
+
+@keyframes psr-twinkle {
+  0%, 100% {
+    opacity: 0.65;
+    filter: brightness(0.9);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.4);
+  }
+}
+
+@keyframes psr-shiny-pulse {
+  from {
+    filter: brightness(1);
+  }
+  to {
+    filter: brightness(1.35);
+  }
+}
